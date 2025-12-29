@@ -87,3 +87,18 @@ body {
 .animate-bounce-final {
   animation: bounce-final 2s ease-out;
 }
+
+@keyframes fade-in-plus {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-plus {
+  animation: fade-in-plus 0.5s ease-out;
+}

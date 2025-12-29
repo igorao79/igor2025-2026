@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Итоги программирования 2025-2026 | Игорь",
-  description: "Мои достижения в программировании за 2025-2026 год: 1362 коммита, 2 курса, портфолио, 3 серьезных проекта",
+  description: "Мои достижения в программировании за 2025-2026 год: 1000+ коммитов, 2 курса, портфолио, 30+ проектов",
 };
 
 export default function RootLayout({
@@ -30,12 +30,23 @@ export default function RootLayout({
       >
         <PixelSnow
           style={{
-            zIndex: -1
+            zIndex: 0,
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            pointerEvents: 'none'
           }}
           color="#ffffff"
-          density={0.1}
-          brightness={0.6}
-          speed={0.5}
+          flakeSize={0.01}
+          minFlakeSize={1.5}
+          pixelResolution={150}
+          speed={1.0}
+          density={0.2}
+          direction={135}
+          brightness={1.0}
+          variant="square"
         />
         {children}
       </body>

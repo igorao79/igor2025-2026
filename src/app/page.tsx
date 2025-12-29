@@ -35,11 +35,12 @@ export default function Home() {
     jobs: false
   });
 
+
   // Целевые значения
   const targetStats = {
     commits: commitStats.total,
     courses: 2,
-    projects: 3,
+    projects: 30,
     jobs: 2
   };
 
@@ -77,6 +78,7 @@ export default function Home() {
 
     const animateCounter = (key: keyof AnimatedStats, target: number, maxValue: number) => {
       return new Promise<void>((resolve) => {
+        console.log(`Starting animation for ${key} with target ${target}`);
         const duration = 2500; // 2.5 секунды на каждый счетчик
         const steps = 50; // 50 обновлений
         const interval = duration / steps;
@@ -122,10 +124,14 @@ export default function Home() {
             setTimeout(() => {
               setFinalStates(prev => ({ ...prev, [key]: true }));
 
+
               // Сбрасываем финальное состояние через 2 секунды (совпадает с длительностью анимации)
-              setTimeout(() => {
-                setFinalStates(prev => ({ ...prev, [key]: false }));
-              }, 2000);
+              // Для проектов "+" остается навсегда
+              if (key !== 'projects') {
+                setTimeout(() => {
+                  setFinalStates(prev => ({ ...prev, [key]: false }));
+                }, 2000);
+              }
             }, 100);
 
             clearInterval(timer);
@@ -166,17 +172,17 @@ export default function Home() {
   }, [commitStats.total]); // Перезапускаем анимацию при изменении данных коммитов
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="container mx-auto px-4 py-16">
+    <div className="min-h-screen flex items-center justify-center px-2 sm:px-4">
+      <div className="container mx-auto px-2 sm:px-4 py-8 sm:py-16">
         {/* Logo */}
-        <div className="text-center mb-12 relative">
+        <div className="text-center mb-8 sm:mb-12 relative px-2 sm:px-4 pt-5 sm:pt-0">
           <div className="relative inline-block">
             <Image
               src="/images/logo.webp"
               alt="Logo"
               width={200}
               height={200}
-              className="mx-auto rounded-full"
+              className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 mx-auto rounded-full"
               priority
             />
             {showShapka && (
@@ -185,7 +191,7 @@ export default function Home() {
                 alt="Shapka"
                 width={220}
                 height={220}
-                className={`absolute -top-15 left-3 w-full h-full object-cover rounded-full ${
+                className={`absolute -top-12 sm:-top-15 left-2 sm:left-3 w-full h-full object-cover rounded-full ${
                   shapkaFalling ? 'animate-fall' : 'opacity-0'
                 }`}
                 priority
@@ -195,12 +201,13 @@ export default function Home() {
         </div>
 
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-white mb-4 drop-shadow-lg">
-            Итоги программирования
+        <div className="text-center mb-12 sm:mb-16 px-2 sm:px-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-4 drop-shadow-lg leading-tight">
+            <span className="block sm:inline">Итоги</span>
+            <span className="block sm:inline sm:ml-2">программирования</span>
           </h1>
-          <p className="text-xl text-white mb-2 drop-shadow-lg">2025-2026 год</p>
-          <div className="w-32 h-1 bg-white mx-auto animate-expand-line"></div>
+          <p className="text-base sm:text-lg md:text-xl text-white mb-2 drop-shadow-lg">2025-2026 год</p>
+          <div className="w-20 sm:w-24 md:w-32 h-1 bg-white mx-auto animate-expand-line"></div>
         </div>
 
         {/* Основная статистика */}
@@ -225,9 +232,9 @@ export default function Home() {
           </Link>
           <Link href="/projects">
             <StatsCard
-              number={animatedStats.projects.toString()}
-              label="Проекта"
-              description="серьезных"
+              number={animatedStats.projects.toString() + (finalStates.projects ? "+" : "")}
+              label="Проектов"
+              description="сделано"
               icon={<BsRocket size={48} />}
               isFinal={finalStates.projects}
             />

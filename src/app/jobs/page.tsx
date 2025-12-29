@@ -1,240 +1,115 @@
 "use client";
 
 import Link from "next/link";
-import { BsBriefcase, BsGeoAlt, BsCalendar, BsCash, BsRocket, BsTrophy } from "react-icons/bs";
+import { BsBriefcase } from "react-icons/bs";
 
 export default function Jobs() {
-  const jobs = [
+  // Данные для графика должностей
+  const jobTimeline = [
     {
-      position: "HTML Верстальщик",
-      company: "Веб-студия 'Creative Solutions'",
-      location: "Удаленно",
-      period: "Январь 2025 - Август 2025",
-      type: "Полная занятость",
-      salary: "80,000 ₽/мес",
-      responsibilities: [
-        "Верстка адаптивных интерфейсов по макетам в Figma и Adobe XD",
-        "Оптимизация производительности и SEO веб-сайтов",
-        "Кроссбраузерная совместимость (Chrome, Firefox, Safari, Edge)",
-        "Работа с CSS Grid и Flexbox для современных layout",
-        "Интеграция с JavaScript для интерактивности",
-        "Code review и рефакторинг существующего кода",
-        "Работа с системами контроля версий (Git)",
-        "Коммуникация с дизайнерами и backend-разработчиками"
-      ],
-      technologies: [
-        "HTML5", "CSS3", "JavaScript", "SASS/SCSS", "Figma", "Adobe XD",
-        "Git", "Gulp", "Webpack", "BEM methodology", "Responsive Design"
-      ],
-      achievements: [
-        "Увеличил скорость загрузки страниц на 40% через оптимизацию",
-        "Реализовал 15+ адаптивных интерфейсов для различных проектов",
-        "Сократил время верстки на 30% через оптимизацию процессов",
-        "Получил признание от команды за качество кода",
-        "Успешно прошел 3 месяца испытательного срока"
-      ],
-      projects: [
-        "Корпоративный сайт для IT-компании (React + CSS)",
-        "Лендинг пейдж для стартапа (HTML + SASS)",
-        "Админ-панель управления контентом (Vue.js + CSS)",
-        "Многостраничный сайт интернет-магазина (HTML + CSS)"
-      ],
-      skillsDeveloped: [
-        "Коммуникация с командой",
-        "Управление временем",
-        "Работа под дедлайн",
-        "Code review",
-        "Документирование кода"
-      ]
+      position: "AI Верстальщик",
+      startDate: "16 июня",
+      endDate: "29 сентября",
+      startMonth: 0, // Июнь (индекс 0)
+      endMonth: 2.5,   // Август (индекс 2) - заканчивается до сентября
+      color: "bg-green-500",
+      hoverColor: "hover:bg-green-400"
     },
     {
-      position: "Разработчик Telegram ботов",
-      company: "IT компания 'BotMaster'",
-      location: "Удаленно",
-      period: "Сентябрь 2025 - настоящее время",
-      type: "Полная занятость",
-      salary: "120,000 ₽/мес",
-      responsibilities: [
-        "Разработка и поддержка Telegram ботов на Node.js",
-        "Интеграция с внешними API (платежные системы, CRM, базы данных)",
-        "Создание автоматизированных систем уведомлений",
-        "Обработка платежей и подписок через Telegram",
-        "Администрирование серверов и мониторинг производительности",
-        "Оптимизация ботов для высокой нагрузки",
-        "Работа с базами данных (MongoDB, PostgreSQL)",
-        "Создание документации для API ботов",
-        "Тестирование и отладка ботов",
-        "Поддержка пользователей и решение инцидентов"
-      ],
-      technologies: [
-        "Node.js", "Express.js", "MongoDB", "PostgreSQL", "Redis",
-        "Telegram Bot API", "Telegraf framework", "Docker", "AWS",
-        "Stripe API", "Webhooks", "REST API", "GraphQL"
-      ],
-      achievements: [
-        "Создал 8+ ботов для различных бизнес-задач",
-        "Автоматизировал процессы для 500+ пользователей",
-        "Реализовал систему платежей с ежемесячным оборотом 50k+ ₽",
-        "Сократил время отклика ботов до 200ms",
-        "Повысил удовлетворенность клиентов на 35%",
-        "Внедрил систему мониторинга и алертов"
-      ],
-      projects: [
-        "Бот для автоматизации продаж (Node.js + Stripe)",
-        "Система уведомлений для интернет-магазина (Telegram + API)",
-        "Бот для управления задачами команды (Node.js + MongoDB)",
-        "Платежный бот с подпиской (Node.js + PostgreSQL)",
-        "Бот для техподдержки (AI integration + Telegram)"
-      ],
-      skillsDeveloped: [
-        "Архитектура масштабируемых систем",
-        "Интеграция платежных систем",
-        "Работа с API",
-        "Оптимизация производительности",
-        "Мониторинг и аналитика"
-      ]
+      position: "Разработчик Telegram бота",
+      startDate: "30 сентября",
+      endDate: "25 декабря",
+      startMonth: 3, // Сентябрь (индекс 3) - начинается с сентября
+      endMonth: 6,   // Декабрь (индекс 6)
+      color: "bg-blue-500",
+      hoverColor: "hover:bg-blue-400"
     }
   ];
 
-  const careerStats = {
-    totalJobs: 2,
-    totalExperience: "1.75 года",
-    totalSalary: "200,000 ₽/мес",
-    totalProjects: 23,
-    totalUsers: 1500,
-    avgProjectTime: "2.5 недели"
-  };
+  const months = ["Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"];
+
 
   return (
     <div className="min-h-screen bg-black bg-opacity-20">
       <div className="container mx-auto px-4 py-16">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16 px-2 sm:px-4">
           <Link href="/" className="text-orange-400 hover:text-orange-300 mb-4 inline-block">
             ← Назад к итогам
           </Link>
-          <h1 className="text-4xl font-bold text-white mb-4 drop-shadow-lg flex items-center gap-3">
-            <BsBriefcase size={40} className="text-orange-400" />
-            Профессиональный опыт
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 sm:mb-4 drop-shadow-lg flex items-center justify-center gap-2 sm:gap-3 leading-tight">
+            <BsBriefcase size={32} className="sm:w-10 sm:h-10 text-orange-400" />
+            <span>
+              <span className="block sm:inline">Профессиональный</span>
+              <span className="block sm:inline sm:ml-1">опыт</span>
+            </span>
           </h1>
-          <p className="text-xl text-white drop-shadow-lg">
-            Мои должности и достижения в карьере разработчика
+          <p className="text-base sm:text-lg md:text-xl text-white drop-shadow-lg px-2">
+            <span className="block sm:inline">Временная шкала моей</span>
+            <span className="block sm:inline sm:ml-1">карьеры в 2025 году</span>
           </p>
         </div>
 
-        {/* Career Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
-          <div className="bg-transparent border border-white border-opacity-30 backdrop-blur-sm rounded-xl p-6 text-center">
-            <div className="text-2xl font-bold text-white">{careerStats.totalJobs}</div>
-            <div className="text-orange-300 text-sm">Должности</div>
-          </div>
-          <div className="bg-transparent border border-white border-opacity-30 backdrop-blur-sm rounded-xl p-6 text-center">
-            <div className="text-2xl font-bold text-white">{careerStats.totalExperience}</div>
-            <div className="text-orange-300 text-sm">Опыта</div>
-          </div>
-          <div className="bg-transparent border border-white border-opacity-30 backdrop-blur-sm rounded-xl p-6 text-center">
-            <div className="text-2xl font-bold text-white">{careerStats.totalProjects}</div>
-            <div className="text-orange-300 text-sm">Проектов</div>
-          </div>
-        </div>
+        {/* Job Timeline Chart */}
+        <div className="bg-transparent border border-white border-opacity-30 backdrop-blur-sm rounded-2xl p-6 mb-12">
+          <h2 className="text-2xl font-bold text-white text-center mb-8 drop-shadow-lg">
+            Временная шкала должностей в 2025 году
+          </h2>
 
-        {/* Jobs */}
-        <div className="space-y-12">
-          {jobs.map((job, index) => (
-            <div key={index} className="bg-transparent border border-white border-opacity-30 backdrop-blur-sm rounded-2xl overflow-hidden">
-              {/* Job Header */}
-              <div className="bg-gradient-to-r from-orange-600 to-red-600 p-6">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h2 className="text-2xl font-bold text-white mb-1">{job.position}</h2>
-                    <div className="text-orange-100 mb-2">{job.company}</div>
-                    <div className="flex items-center gap-4 text-orange-200 text-sm">
-                      <span className="flex items-center gap-1"><BsGeoAlt size={14} /> {job.location}</span>
-                      <span className="flex items-center gap-1"><BsCalendar size={14} /> {job.period}</span>
-                      <span className="flex items-center gap-1"><BsCash size={14} /> {job.salary}</span>
-                      <span className="px-2 py-1 bg-white bg-opacity-20 rounded">
-                        {job.type}
-                      </span>
-                    </div>
-                  </div>
+          {/* Timeline */}
+          <div className="relative">
+            {/* Month labels */}
+            <div className="flex justify-between mb-4 px-4">
+              {months.map((month, index) => (
+                <div key={index} className="text-xs text-white font-medium text-center flex-1">
+                  {month}
                 </div>
-              </div>
-
-              {/* Job Content */}
-              <div className="p-6">
-                {/* Responsibilities */}
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold text-white mb-4">Обязанности:</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {job.responsibilities.map((responsibility, respIndex) => (
-                      <div key={respIndex} className="flex items-start text-white">
-                        <span className="text-orange-400 mr-3 mt-1">•</span>
-                        <span className="text-sm leading-relaxed">{responsibility}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Technologies */}
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold text-white mb-4">Технологии:</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {job.technologies.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-3 py-1 bg-orange-600 bg-opacity-20 text-orange-300 rounded-full text-sm border border-orange-500 border-opacity-30"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Projects */}
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold text-white mb-4">Ключевые проекты:</h3>
-                  <div className="space-y-3">
-                    {job.projects.map((project, projectIndex) => (
-                      <div key={projectIndex} className="bg-white bg-opacity-5 rounded-lg p-4">
-                        <div className="text-white font-medium flex items-center gap-2"><BsRocket size={14} /> {project}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Achievements */}
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold text-white mb-4">Достижения:</h3>
-                  <div className="bg-green-900 bg-opacity-30 rounded-lg p-4">
-                    <div className="space-y-2">
-                      {job.achievements.map((achievement, achIndex) => (
-                        <div key={achIndex} className="flex items-start text-green-300">
-                          <BsTrophy size={14} className="text-green-400 mr-3 mt-1" />
-                          <span className="text-sm leading-relaxed">{achievement}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Skills Developed */}
-                <div>
-                  <h3 className="text-lg font-semibold text-white mb-4">Развитые навыки:</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {job.skillsDeveloped.map((skill, skillIndex) => (
-                      <span
-                        key={skillIndex}
-                        className="px-3 py-1 bg-blue-600 bg-opacity-20 text-blue-300 rounded-full text-sm border border-blue-500 border-opacity-30"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
-          ))}
+
+            {/* Timeline bars */}
+            <div className="space-y-6">
+              {jobTimeline.map((job, jobIndex) => (
+                <div key={jobIndex} className="relative">
+                  {/* Job title */}
+                  <div className="text-sm font-semibold text-white mb-2 flex items-center gap-2">
+                    <div className={`w-4 h-4 sm:w-3 sm:h-3 rounded-full ${job.color}`}></div>
+                    {job.position}
+                  </div>
+
+                  {/* Timeline bar */}
+                  <div className="relative h-8 bg-gray-700 bg-opacity-30 rounded-full overflow-hidden">
+                    {/* Active period */}
+                    <div
+                      className={`absolute top-0 h-full ${job.color} ${job.hoverColor} rounded-full transition-all duration-300 cursor-pointer flex items-center justify-center text-xs font-medium text-white`}
+                      style={{
+                        left: `${(job.startMonth * 100) / 6}%`,
+                        width: `${((job.endMonth - job.startMonth + 1) * 100) / 7}%`
+                      }}
+                      title={`${job.startDate} - ${job.endDate}`}
+                    >
+                      <span className="hidden sm:inline">{job.startDate} - {job.endDate}</span>
+                      <span className="sm:hidden text-xs">
+                        {job.startMonth === 0 ? '16 июн - 29 сен' : '30 сен - 25 дек'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Legend */}
+          <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 mt-6">
+            {jobTimeline.map((job, index) => (
+              <div key={index} className="flex items-center gap-2 justify-center sm:justify-start">
+                <div className={`w-4 h-4 sm:w-3 sm:h-3 rounded-full ${job.color}`}></div>
+                <span className="text-sm text-white text-center sm:text-left">{job.position}</span>
+              </div>
+            ))}
+          </div>
         </div>
+
 
       </div>
     </div>

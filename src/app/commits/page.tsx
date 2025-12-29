@@ -67,7 +67,11 @@ export default function Commits() {
   if (loading) {
     return (
       <div className="min-h-screen bg-black bg-opacity-20 flex items-center justify-center">
-        <div className="text-white text-xl">Загрузка данных о коммитах...</div>
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-400 mx-auto mb-4"></div>
+          <div className="text-white text-xl">Получение данных от API GitHub...</div>
+          <div className="text-blue-300 text-sm mt-2">Пожалуйста, подождите</div>
+        </div>
       </div>
     );
   }
@@ -105,20 +109,24 @@ export default function Commits() {
             <div className="text-xl text-blue-300">за год активной разработки</div>
           </div>
           <h2 className="text-2xl font-bold text-white text-center mb-6">График коммитов по месяцам</h2>
-          <div className="flex items-end justify-center gap-2 h-64">
+          <div className="flex items-end justify-center gap-0.5 sm:gap-1 md:gap-2 h-48 sm:h-64">
             {commitData.breakdown.map((month, index) => (
-              <div key={index} className="flex flex-col items-center gap-2">
+              <div key={index} className="flex flex-col items-center gap-1 sm:gap-2 flex-shrink-0">
                 <div
-                  className="bg-blue-500 rounded-t w-8 transition-all duration-500 hover:bg-blue-400"
+                  className="bg-blue-500 rounded-t w-4 sm:w-6 md:w-8 transition-all duration-500 hover:bg-blue-400"
                   style={{
-                    height: `${(month.commits / maxCommits) * 180}px`,
+                    height: `${(month.commits / maxCommits) * 140}px`,
                     minHeight: '4px'
                   }}
                 ></div>
-                <div className="text-xs text-white font-medium text-center">
+                <div className="text-xs text-white font-medium text-center hidden sm:block">
                   {month.month.slice(0, 3)}
                 </div>
-                <div className="text-xs text-blue-300 font-bold">{month.commits}</div>
+                <div className="text-xs text-blue-300 font-bold hidden sm:block">{month.commits}</div>
+                {/* Мобильная версия - только сокращенные названия */}
+                <div className="text-xs text-white font-medium text-center sm:hidden">
+                  {month.month.slice(0, 1)}
+                </div>
               </div>
             ))}
           </div>
