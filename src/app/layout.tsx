@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased relative min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased relative min-h-screen bg-black`}
       >
         <PixelSnow
           style={{
@@ -48,7 +48,7 @@ export default function RootLayout({
           speed={1.0}
           density={0.2}
           direction={135}
-          brightness={1.0}
+          brightness={1.2}
           variant="square"
         />
         {children}
