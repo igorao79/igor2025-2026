@@ -14,8 +14,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Итоги программирования 2025-2026 | Игорь",
+  title: "Итоги программирования 2025-2026 | igorao79",
   description: "Мои достижения в программировании за 2025-2026 год: 1000+ коммитов, 2 курса, портфолио, 30+ проектов",
+  other: {
+    "theme-color": "#000000",
+  },
 };
 
 export default function RootLayout({

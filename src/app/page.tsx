@@ -204,7 +204,7 @@ export default function Home() {
         <div className="text-center mb-12 sm:mb-16 px-2 sm:px-4">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-4 drop-shadow-lg leading-tight">
             <span className="block sm:inline">Итоги</span>
-            <span className="block sm:inline sm:ml-2">программирования</span>
+            <span className="block sm:inline sm:ml-2">программирования <a href="https://github.com/igorao79" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors duration-300 decoration-2  cursor-pointer">igorao79</a></span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-white mb-2 drop-shadow-lg">2025-2026 год</p>
           <div className="w-20 sm:w-24 md:w-32 h-1 bg-white mx-auto animate-expand-line"></div>
