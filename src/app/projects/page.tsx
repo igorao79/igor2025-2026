@@ -75,11 +75,11 @@ export default function Projects() {
     },
     {
       name: "Звоночек",
-      description: "Сайт по продаже автомобилей",
-      technologies: ["Next.js", "Zustand", "Typescript", "Tailwind"],
-      features: ["Каталог автомобилей", "Фильтры и поиск", "Управление состоянием", "Responsive дизайн"],
-      github: "https://github.com/igorao79/template4",
-      demo: "https://igorao79.github.io/template4/"
+      description: "Звоночек",
+      technologies: ["Next.js", "Tailwind", "Typescript", "WebRTC", "Zustand", "Supabase"],
+      features: ["Realtime обновления", "Управление состоянием", "Современный интерфейс", "WebRTC интеграция"],
+      github: "https://github.com/igorao79/zvonochek",
+      demo: "https://zvonochek.vercel.app/"
     },
     {
       name: "СырАрт",
@@ -99,17 +99,17 @@ export default function Projects() {
     },
     {
       name: "Chessaryao",
-      description: "Социальная сеть Nexo",
-      technologies: ["Next.js", "Tailwind", "Typescript", "Cloudinary", "Zustand", "Supabase"],
-      features: ["Социальные функции", "Облачное хранение", "Управление состоянием", "Realtime обновления"],
-      github: "",
-      demo: ""
+      description: "Многопользовательская игра в шахматы",
+      technologies: ["Next.js", "Tailwind", "Typescript", "Appwrite"],
+      features: ["Многопользовательские игры", "Realtime обновления", "База данных", "Современный интерфейс"],
+      github: "https://github.com/igorao79/chessgame",
+      demo: "https://chessgame-delta-five.vercel.app/"
     }
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800">
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-4">
         {/* Header */}
         <div className="text-center mb-16">
           <Link href="/" className="text-purple-400 hover:text-purple-300 mb-4 inline-block">
@@ -124,7 +124,7 @@ export default function Projects() {
           </p>
 
           {/* Projects Grid */}
-          <div className="max-w-[900px] mx-auto gap-2 grid grid-cols-12 grid-rows-3 px-8 justify-center">
+          <div className="max-w-[1400px] mx-auto gap-2 grid grid-cols-12 grid-rows-3 px-8 justify-center">
             {projectItems.map((project, index) => {
               // Определяем размеры и стиль для каждой карточки
               const getCardClasses = (index: number) => {
@@ -143,10 +143,10 @@ export default function Projects() {
                   onPress={() => handleProjectClick(index)}
                 >
                   <CardHeader className="absolute z-10 top-1 flex-col items-start">
-                    <p className="text-tiny text-white/60 uppercase font-bold">
+                    <p className={`text-tiny uppercase font-bold ${index === 4 ? 'text-black/60' : 'text-white/60'}`}>
                       {projectDetails[index].technologies[0]}
                     </p>
-                    <h4 className="text-white font-medium text-large">
+                    <h4 className={`font-medium text-large ${index === 4 ? 'text-black' : 'text-white'}`}>
                       {project.text}
                     </h4>
                   </CardHeader>
@@ -179,7 +179,7 @@ export default function Projects() {
                 </h2>
                 <button
                   onClick={handleModalClose}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-400 hover:text-white transition-colors cursor-pointer"
                 >
                   <BsX size={24} />
                 </button>
