@@ -172,7 +172,7 @@ export default function Home() {
   }, [commitStats.total]); // Перезапускаем анимацию при изменении данных коммитов
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-2 sm:px-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 flex items-center justify-center px-2 sm:px-4">
       <div className="container mx-auto px-2 sm:px-4 py-8 sm:py-16">
         {/* Logo */}
         <div className="text-center mb-8 sm:mb-12 relative px-2 sm:px-4 pt-5 sm:pt-0">
